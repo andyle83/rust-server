@@ -26,27 +26,9 @@ impl TryFrom<&[u8]> for Request {
             return Err(ParseError::InvalidProtocol);
         }
 
-        println!("Method {}", method);
-        println!("Path {}", path);
-        println!("Protocol {}", protocol);
-
         let method : Method = method.parse()?;
 
         let mut query_string = None;
-        // match path.find('?') {
-        //     Some(index) => {
-        //         query_string = Some(&path[i + 1..]);
-        //         path = &path[..i];
-        //     },
-        //     None => {}
-        // }
-
-        // let q = path.find('?');
-        // if q.is_some() {
-        //     let i = q.unwrap();
-        //     query_string = Some(&path[i + 1..]);
-        //     path = &path[..i];
-        // }
 
         // paten matching
         if let Some(i) = path.find('?') {
