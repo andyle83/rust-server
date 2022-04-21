@@ -30,7 +30,8 @@ impl TryFrom<&[u8]> for Request {
         println!("Path {}", path);
         println!("Protocol {}", protocol);
 
-        // let method : Method = method.parse()?;
+        let method : Method = method.parse()?;
+
 
         unimplemented!()
     }
@@ -64,11 +65,11 @@ impl ParseError {
     }
 }
 
-// impl From<MethodError> for ParseError {
-//     fn from(_: MethodError) -> Self {
-//         Self::InvalidMethod
-//     }
-// }
+impl From<MethodError> for ParseError {
+    fn from(_: MethodError) -> Self {
+        Self::InvalidMethod
+    }
+}
 
 impl From<Utf8Error> for ParseError {
     fn from(_: Utf8Error) -> Self {
