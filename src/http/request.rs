@@ -50,11 +50,16 @@ impl TryFrom<&[u8]> for Request {
 
         // paten matching
         if let Some(i) = path.find('?') {
-            query_string = Some(&path[i + 1..]);
+            query_string = Some(path[i + 1..].to_string());
             path = &path[..i];
         }
 
-        unimplemented!()
+        // unimplemented!()
+        Ok(Self {
+            path: path.to_string(),
+            query_string,
+            method
+        })
     }
 }
 
