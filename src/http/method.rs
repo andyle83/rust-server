@@ -1,5 +1,4 @@
 use std::str::FromStr;
-use crate::http::request::ParseError;
 
 pub enum Method {
     GET,

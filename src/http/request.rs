@@ -1,9 +1,9 @@
 use super::method::{Method, MethodError};
 use std::convert::TryFrom;
 use std::error::Error;
-use std::str::{FromStr, Utf8Error};
+use std::str::{Utf8Error};
 use std::str;
-use std::fmt::{Formatter, Display, Result as FmtResult, write, Debug};
+use std::fmt::{Formatter, Display, Result as FmtResult, Debug};
 
 pub struct Request<'buf> {
     path: &'buf str,

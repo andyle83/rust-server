@@ -1,5 +1,5 @@
 use std::io::Read;
-use std::net::{TcpListener, TcpStream};
+use std::net::{TcpListener};
 
 use crate::http::Request;
 use std::convert::TryFrom;
