@@ -2,10 +2,12 @@ use std::collections::HashMap;
 
 //a=1&b=2&c&d=&e===&d=7&d=abc
 
+#[derive(Debug)]
 pub struct QueryString<'buf> {
     data: HashMap<&'buf str, Value<'buf>>
 }
 
+#[derive(Debug)]
 pub enum Value<'buf> {
     Single(&'buf str),
     // Heap allocate
