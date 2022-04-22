@@ -27,16 +27,25 @@ impl Server {
                     match stream.read(&mut buffer) {
                         Ok(_) => {
                             println!("Received a request: {}", String::from_utf8_lossy(&buffer));
-                            match Request::try_from(&buffer[..]) {
+                            let response = match Request::try_from(&buffer[..]) {
                                 Ok(request) => {
                                     dbg!(request);
-                                    let response = Response::new(
+                                    Response::new(
                                         StatusCode::Ok,
                                         Some("<h1 style='color:orange;'>BO DEP TRAI</h1><h3>Me xinh gai</h3>".to_uppercase())
-                                    );
-                                    response.send(&mut stream);
+                                    )
                                 },
-                                Err(err) => println!("Failed to parse : {}", err)
+                                Err(err) => {
+                                    println!("Failed to parse : {}", err);
+                                    Response::new(
+                                        StatusCode::BadRequest,
+                                        None
+                                    )
+                                }
+                            };
+
+                            if let Err(e) = response.send(&mut stream) {
+                                print!("Failed to send the response {}", e);
                             }
                         },
                         Err(err) => println!("Failed to read from connection {}", err)
