@@ -17,7 +17,7 @@ impl Response {
         }
     }
 
-    pub fn send(&self, stream: &mut TcpStream) -> IOResult<()> {
+    pub fn send(&self, stream: &mut dyn Write) -> IOResult<()> {
         let body = match &self.body {
             Some(b) => b,
             None => ""
