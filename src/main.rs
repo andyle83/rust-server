@@ -12,8 +12,11 @@ fn main() {
     // read environment at run-time
     let default_path = format!("{}/public",env!("CARGO_MANIFEST_DIR"));
     let address = String::from("127.0.0.1:9090");
-    let public_path = env::var("PUBLIC_PATH").unwrap_or(default_path);
-    let handle = WebsiteHandler::new(public_path);
+    //let public_path = env::var("PUBLIC_PATH").unwrap_or(default_path);
+
+    println!("public path {}", default_path);
+
+    let handle = WebsiteHandler::new(default_path);
 
     let server = Server::new(address);
 
