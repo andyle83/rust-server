@@ -1,4 +1,4 @@
-use std::io::Read;
+use std::io::{Read, Write};
 use std::net::{TcpListener};
 
 use crate::http::Request;
@@ -30,6 +30,7 @@ impl Server {
                             match Request::try_from(&buffer[..]) {
                                 Ok(request) => {
                                     dbg!(request);
+                                    write!(stream, "HTTP/1.1 404 Not Found\r\n\r\n");
                                 },
                                 Err(err) => println!("Failed to parse : {}", err)
                             }

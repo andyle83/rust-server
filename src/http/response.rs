@@ -1,4 +1,4 @@
-pub enum StatusCode {}
+use crate::http::StatusCode;
 
 #[derive(Debug)]
 pub struct Response {
