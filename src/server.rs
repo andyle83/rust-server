@@ -31,10 +31,10 @@ impl Server {
                                 Ok(request) => {
                                     dbg!(request);
                                     let response = Response::new(
-                                        StatusCode::NotFound,
-                                        None
+                                        StatusCode::Ok,
+                                        Some("<h1 style='color:orange;'>BO DEP TRAI</h1><h3>Me xinh gai</h3>".to_uppercase())
                                     );
-                                    write!(stream, "{}", response);
+                                    response.send(&mut stream);
                                 },
                                 Err(err) => println!("Failed to parse : {}", err)
                             }
